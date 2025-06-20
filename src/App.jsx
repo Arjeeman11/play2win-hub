@@ -1,7 +1,10 @@
 import { Trophy, Gift, Share2, Gamepad2, MonitorSmartphone, Wallet, History } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getFirestore, collection, query, orderBy, limit, getDocs, updateDoc, doc, addDoc, where } from "firebase/firestore";
-import { Button, Card, CardContent, Input } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+
 
 const db = getFirestore();
 
