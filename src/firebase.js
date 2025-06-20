@@ -1,8 +1,6 @@
-// src/firebase.js
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-// ✅ Corrected Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDZxYn3j_y-DlYboLQKSoFIgbgxKPDuGbQ",
   authDomain: "play2winhub-b415a.firebaseapp.com",
@@ -13,8 +11,8 @@ const firebaseConfig = {
   measurementId: "G-8NK69RRBV9"
 };
 
-// ✅ Initialize Firebase and Firestore
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export { db };
+
