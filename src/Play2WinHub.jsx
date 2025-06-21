@@ -147,4 +147,3 @@ export default function Play2WinHub() {
     </div>
   );
 }
-feat: add Play2WinHub component
