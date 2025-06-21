@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+// ✅ Updated Play2WinHub with Vegas Theme Styling
+
 import { Trophy, Gift, Share2, Gamepad2, MonitorSmartphone, Wallet, History } from "lucide-react";
+import { useEffect, useState } from "react";
+import { db } from "./firebase"; // ✅ Correct Firebase import
 import { collection, query, orderBy, limit, getDocs, updateDoc, doc, addDoc, where } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { db } from "./firebase"; // ✅ CORRECT: Use the initialized Firebase app
+import { motion } from "framer-motion";
 
 export default function Play2WinHub() {
   const [leaderboard, setLeaderboard] = useState([]);
-  const [user, setUser] = useState({ uid: "test-user-001" }); // TEMP: simulate login
+  const [user, setUser] = useState({ uid: "test-user-001" }); // Simulated login
   const [points, setPoints] = useState(0);
   const [triviaQuestion, setTriviaQuestion] = useState(null);
   const [userAnswer, setUserAnswer] = useState("");
@@ -84,10 +87,19 @@ export default function Play2WinHub() {
   };
 
   return (
-    <>
-      <Card className="bg-purple-800 text-white">
-        <CardContent className="p-4">
-          <h2 className="text-xl font-semibold mb-2">💸 Request Payout</h2>
+    <div className="min-h-screen bg-gradient-to-br from-red-900 via-yellow-700 to-yellow-400 p-6 text-white space-y-8">
+      <motion.h1
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-5xl font-extrabold text-center mb-4 drop-shadow-lg"
+      >
+        🎰 Play2Win Hub 🎉
+      </motion.h1>
+
+      <Card className="bg-purple-800 text-white shadow-xl rounded-2xl">
+        <CardContent className="p-6">
+          <h2 className="text-2xl font-semibold mb-2">💸 Request Payout</h2>
           <p className="text-sm mb-2">Exchange 500 points for ₱50 via GCash or PayPal</p>
           <select
             className="text-black mb-2 w-full p-2 rounded"
@@ -103,14 +115,14 @@ export default function Play2WinHub() {
             onChange={e => setPayoutInfo({ ...payoutInfo, account: e.target.value })}
             className="mb-2 text-black"
           />
-          <Button onClick={requestCashout} className="bg-white text-purple-800">Request ₱50 Payout</Button>
+          <Button onClick={requestCashout} className="bg-white text-purple-800 w-full">Request ₱50 Payout</Button>
           <p className="mt-2 text-xs italic text-white/80">Payouts processed within 24–72 hours. One request per day. 🎉</p>
         </CardContent>
       </Card>
 
-      <Card className="bg-yellow-800 text-white">
-        <CardContent className="p-4">
-          <h2 className="text-xl font-semibold mb-2">📜 Payout History</h2>
+      <Card className="bg-yellow-800 text-white shadow-xl rounded-2xl">
+        <CardContent className="p-6">
+          <h2 className="text-2xl font-semibold mb-4">📜 Payout History</h2>
           {payoutHistory.length === 0 ? (
             <p className="text-sm">No payout requests yet.</p>
           ) : (
@@ -125,14 +137,14 @@ export default function Play2WinHub() {
         </CardContent>
       </Card>
 
-      <Card className="bg-gray-800 text-white">
-        <CardContent className="p-4 text-center">
-          <h2 className="text-xl font-semibold mb-2">📱 Install as App</h2>
+      <Card className="bg-gray-800 text-white shadow-xl rounded-2xl">
+        <CardContent className="p-6 text-center">
+          <h2 className="text-2xl font-semibold mb-2">📱 Install as App</h2>
           <p className="text-sm mb-2">For the best experience, add Play2Win Hub to your home screen!</p>
           <p className="text-xs italic">On mobile: Tap Share → Add to Home Screen</p>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }
 
