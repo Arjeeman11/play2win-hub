@@ -1,16 +1,14 @@
-import { Trophy, Gift, Share2, Gamepad2, MonitorSmartphone, Wallet, History } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getFirestore, collection, query, orderBy, limit, getDocs, updateDoc, doc, addDoc, where } from "firebase/firestore";
+import { Trophy, Gift, Share2, Gamepad2, MonitorSmartphone, Wallet, History } from "lucide-react";
+import { collection, query, orderBy, limit, getDocs, updateDoc, doc, addDoc, where } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-
-
-const db = getFirestore();
+import { db } from "./firebase"; // ✅ CORRECT: Use the initialized Firebase app
 
 export default function Play2WinHub() {
   const [leaderboard, setLeaderboard] = useState([]);
-  const [user, setUser] = useState(null); // assume this is passed or lifted up from auth context
+  const [user, setUser] = useState({ uid: "test-user-001" }); // TEMP: simulate login
   const [points, setPoints] = useState(0);
   const [triviaQuestion, setTriviaQuestion] = useState(null);
   const [userAnswer, setUserAnswer] = useState("");
@@ -137,3 +135,4 @@ export default function Play2WinHub() {
     </>
   );
 }
+
